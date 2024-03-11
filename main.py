@@ -76,20 +76,20 @@ class CtFile():
 
         # link error handler
         if j.get('code') == 404:
-            log.error('dl_file error: {}'.format(j.get('message')))
-            if j.get('message') == DL_ERROR_FILELINKTIMEOUT:
+            log.error('dl_file error: {}'.format(j["file"]['message']))
+            if j["file"]['message'] == DL_ERROR_FILELINKTIMEOUT:
                 log.error('need get dir list again')
-            return False, j.get('message')
+            return False, j["file"]['message']
 
         if not self.filename:
-            self.filename = j['file_name']
+            self.filename = j["file"]['file_name']
 
         # step 2
         params = {
-            'uid': j['userid'],
-            'fid': j['file_id'],
+            'uid': j["file"]['userid'],
+            'fid': j["file"]['file_id'],
             'folder_id': 0,
-            'file_chk': j['file_chk'],
+            'file_chk': j["file"]['file_chk'],
             'mb': 0,
             'app': 0,
             'acheck': 1,
