@@ -33,7 +33,6 @@ g_sem = threading.Semaphore(DOWNLOAD_CNT)
 
 DL_Thread_status = Enum('DL_Thread_status', ('init', 'finished', 'E404'))
 
-
 def random_ua(id):
     return DYN_UA_FORMAT.format(random.randrange(9999), id + 1)
 
@@ -157,6 +156,10 @@ class CtFile():
             threads[i].join()
 
         os.rename(temp_filename, filename)
+        # 输出标志
+        if downloaded_bytes == filesize:
+            print("\n*download-filename: " + filename)
+        
         return True, None
 
 
