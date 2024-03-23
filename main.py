@@ -59,11 +59,13 @@ class CtFile():
         # step 1
         headers = {
             'origin': self.urlparsed.netloc,
+            'Referer': self.url
         }
 
         # parameters
         params = {
             'f': self.url.split('/')[-1],
+            'path': self.url.split('/')[-2],
             'passcode': '',
             'r': str(random.random()),
             'ref': '',
